@@ -5,12 +5,13 @@
   <div style="display: flex; width:200%">
   <% menus.each do |menu| %>
     <label class="MenuItem-container">
-    <form action="/menu/<%=menu.id %>" method="PUT">
+    <%= form_with(url: "/menus/#{menu.id}", method:"put") do %>
       <p class="MenuItem-name">Name: <%= menu.name %></p>
       <p class="MenuItem-name">Desc: <%= menu.description %></p>
       <p class="MenuItem-count">Price: <%= menu.price%></p>
       <p class="MenuItem-count">Qty: <%= menu.quantities%></p>
       <input type="submit" value="Update">
+    <% end %>
     </form>
     </label>
   <%end%>
