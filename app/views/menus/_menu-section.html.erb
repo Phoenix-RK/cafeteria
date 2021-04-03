@@ -1,0 +1,18 @@
+<section class="MenuSection">
+  <div class="MenuSectionTitle">
+   <p class="MenuSectionTitle-text"> <%=section_title%></p>
+  </div>
+  <div style="display: flex; width:200%">
+  <% menus.each do |menu| %>
+    <label class="MenuItem-container">
+    <form action="/menu/<%=menu.id %>" method="PUT">
+      <p class="MenuItem-name">Name: <%= menu.name %></p>
+      <p class="MenuItem-name">Desc: <%= menu.description %></p>
+      <p class="MenuItem-count">Price: <%= menu.price%></p>
+      <p class="MenuItem-count">Qty: <%= menu.quantities%></p>
+      <input type="submit" value="Update">
+    </form>
+    </label>
+  <%end%>
+  </div>
+</section>
