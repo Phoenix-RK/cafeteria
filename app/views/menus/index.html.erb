@@ -1,22 +1,42 @@
 <main class="MenuPageMain">
+<div style="display:flex; width:700px;">
   <article>
-    <h1 class="TodoPage-title">Menu</h1>
+    <h1 class="MenuPage-title">Menu</h1>
 
-    <%= render partial: "menu-section", locals:{
-      section_title: "Juice",
-      menus: Menu.juice
-    } %>
+        <%= render partial: "menu-section", locals:{
+          section_title: "Juice",
+          menus: Menu.juice
+        } %>
 
-     <%= render partial: "menu-section", locals:{
-      section_title: "Starters",
-      menus: Menu.starters
-    } %>
+        <%= render partial: "menu-section", locals:{
+          section_title: "Starters",
+          menus: Menu.starters
+        } %>
 
-    <%= render partial:"menu-section", locals:{
-      section_title: "Desserts",
-      menus: Menu.dessert
-    } %>
-
-
+        <%= render partial:"menu-section", locals:{
+          section_title: "Desserts",
+          menus: Menu.dessert
+        } %>
   </article>
+  <div class="CartSection" >
+    <h3>Items in the cart : <%= Cart.sum(:quantity) %> </h3>
+    <table style=" border: 2px solid black;   border-collapse: collapse;">
+      <tr>
+        <th style=" border: 2px solid black;   border-collapse: collapse; padding: 5px;">Name</th>
+        <th style=" border: 2px solid black;   border-collapse: collapse; padding: 5px;"> Price </th>
+        <th style=" border: 2px solid black;   border-collapse: collapse; padding: 5px;"> Quantity</th>
+      <tr>
+
+      <%Cart.all.each do |cart_item|%>
+        <tr>
+          <td style=" border: 2px solid black;   border-collapse: collapse; padding: 5px;"><%= cart_item.menu_name%></td>
+          <td style=" border: 2px solid black;   border-collapse: collapse; padding: 5px;"><%= cart_item.menu_price%></td>
+          <td style=" border: 2px solid black;   border-collapse: collapse; padding: 5px;"><%= cart_item.quantity%></td>
+        </tr>
+      <%end%>
+    </table>
+
+    <button type="button"> Checkout </button>
+  </div>
+  </div>
 </main>
