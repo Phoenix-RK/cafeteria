@@ -1,0 +1,27 @@
+<div>
+    <h3>Items in the cart : <%= Cart.sum(:quantity) %> </h3>
+    <table class="table table-striped table-hover">
+      <tr>
+        <th >Name</th>
+        <th> Price </th>
+        <th> Quantity</th>
+        <th> Amount </th>
+      <tr>
+
+      <%Cart.all.each do |cart_item|%>
+
+        <tr>
+          <td><%= cart_item.menu_name.capitalize%></td>
+          <td><%= cart_item.menu_price%></td>
+          <td><%= cart_item.quantity%></td>
+          <td><%=cart_item.menu_price * cart_item.quantity%></td>
+          <% @sum = @sum + (cart_item.menu_price * cart_item.quantity)%>
+        </tr>
+      <%end%>
+    </table>
+
+    <p> Total : <%= "#{@sum}" %></p>
+  <%= form_with(url: "/orders/", method:"get") do %>
+     <input type="submit" value="Place order">
+  <%end%>
+  </div>

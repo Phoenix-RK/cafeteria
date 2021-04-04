@@ -2,18 +2,20 @@
   <div class="MenuSectionTitle">
    <p class="MenuSectionTitle-text"> <%=section_title%></p>
   </div>
-  <div style="display: flex; width:200%">
+
+  <div class="card-group">
   <% menus.each do |menu| %>
-    <label class="MenuItem-container">
-    <%= form_with(url: "/menus/#{menu.id}", method:"put") do %>
-      <p class="MenuItem-name">Name: <%= menu.name %></p>
-      <p class="MenuItem-name">Desc: <%= menu.description %></p>
-      <p class="MenuItem-count">Price: <%= menu.price%></p>
-      <p class="MenuItem-count">Qty: <%= menu.quantities%></p>
-      <input type="submit" value="Add">
-    <% end %>
-    </form>
-    </label>
+  <div class="card m-2 border border-1" style="width: 18rem;">
+    <div class="p-1">
+      <h5 class="card-title fw-bold"><%= menu.name.capitalize %></h5>
+      <div class="card-text"> <%= menu.description.capitalize %></div>
+      <div  class="card-text">Qty: <%= menu.quantities%></div>
+      <div class="card-text"> Rs: <%=menu.price%></div>
+       <%= form_with(url: "/menus/#{menu.id}", method:"put") do %>
+      <input class="btn btn-primary" type="submit" value="Add">
+      <%end%>
+    </div>
+  </div>
   <%end%>
   </div>
 </section>

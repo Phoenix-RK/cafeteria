@@ -1,8 +1,7 @@
 <main class="MenuPageMain">
-<div style="display:flex; width:700px;">
-  <article>
+<div class="row">
+  <div class="col-10">
     <h1 class="MenuPage-title">Menu</h1>
-
         <%= render partial: "menu-section", locals:{
           section_title: "Juice",
           menus: Menu.juice
@@ -17,26 +16,28 @@
           section_title: "Desserts",
           menus: Menu.dessert
         } %>
-  </article>
-  <div class="CartSection" >
-    <h3>Items in the cart : <%= Cart.sum(:quantity) %> </h3>
-    <table style=" border: 2px solid black;   border-collapse: collapse;">
-      <tr>
-        <th style=" border: 2px solid black;   border-collapse: collapse; padding: 5px;">Name</th>
-        <th style=" border: 2px solid black;   border-collapse: collapse; padding: 5px;"> Price </th>
-        <th style=" border: 2px solid black;   border-collapse: collapse; padding: 5px;"> Quantity</th>
-      <tr>
-
-      <%Cart.all.each do |cart_item|%>
-        <tr>
-          <td style=" border: 2px solid black;   border-collapse: collapse; padding: 5px;"><%= cart_item.menu_name%></td>
-          <td style=" border: 2px solid black;   border-collapse: collapse; padding: 5px;"><%= cart_item.menu_price%></td>
-          <td style=" border: 2px solid black;   border-collapse: collapse; padding: 5px;"><%= cart_item.quantity%></td>
-        </tr>
-      <%end%>
-    </table>
-
-    <button type="button"> Checkout </button>
   </div>
+  <div class="col-2 bg-secondary">
+    <h3 style="color: white">Items in the cart : <%= Cart.sum(:quantity) %> </h3>
+   <div class="row">
+    <%Cart.all.each do |cart_item|%>
+   <div class="col-12">
+    <div class="card mb-1 border border-1">
+    <div class="p-1">
+      <h5 class="card-title fw-bold"><%=cart_item.menu_name.capitalize%></h5>
+      <div  class="card-text">Qty: <%= cart_item.quantity%></div>
+      <div class="card-text"> Rs: <%=cart_item.menu_price%></div>
+
+    </div>
+  </div>
+  </div>
+  <%end%>
+  </div>
+
+  <%= form_with(url: "/carts/", method:"get") do %>
+     <input type="submit" value="Checkout" class="btn btn-success">
+  <%end%>
+  </div>
+
   </div>
 </main>
