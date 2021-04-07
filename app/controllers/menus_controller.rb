@@ -5,6 +5,22 @@ class MenusController < ApplicationController
     render "index"
   end
 
+
+  def create
+    menu = Menu.create!(
+      name: params[:name],
+      description: params[:description],
+      price: params[:price],
+      category_id: params[:category],
+      quantities: params[:quantities],
+      available: true,
+    )
+    menu.menu_id = menu.id
+    menu.save!
+    flash[:notice] = "#{menu.name}  added successfully"
+    redirect_to new_items_path
+  end
+
   def update
     if params[:inc]
       id = params[:id]

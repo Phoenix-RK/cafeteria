@@ -1,1 +1,40 @@
-<p>New item page</p>
+<h1>New item page</h1>
+
+
+
+<%= form_with(url: "/menus", method: "post") do |form| %>
+
+
+
+   <div class="Form-section">
+    <p class="FormInput-label">Product name:</p>
+    <%= form.text_field :name, class: "Form-input" %>
+   </div>
+
+
+   <div class="Form-section">
+    <p class="FormInput-label">Product description:</p>
+    <%= form.text_field :description, class: "Form-input"%>
+   </div>
+
+
+   <div class="Form-section">
+   <p class="FormInput-label">Price:</p>
+    <%= form.number_field :price, class: "Form-input" %>
+   </div>
+
+   <div class="Form-section">
+   <p class="FormInput-label">Category:</p>
+    <%= form.text_field :category, class: "Form-input" %>
+   </div>
+
+    <div class="Form-section">
+    <p class="FormInput-label">Quantities</p>
+      <%= form.number_field :quantities, class:"Form-input" %>
+    </div>
+
+    <div class="Form-section">
+    <%= form.submit "Add item", class:"Form-submit"%>
+    </div>
+  </div>
+<%end%>
