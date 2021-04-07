@@ -1,8 +1,8 @@
 <h1>Admin maintain page</h1>
 
-<%= link_to "Old items", old_items_path %>
-<h3>Old items</h3>
-<h3>New items</h3>
+
+<h3><%= link_to "Old items", old_items_path %></h3>
+<h3><%= link_to "New items", new_items_path %></h3>
 <%= form_with url: admins_path do |form| %>
 
    <div class="Form-section">

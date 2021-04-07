@@ -8,4 +8,7 @@ class AdminsController < ApplicationController
   def olditem
     render "olditem"
   end
+  def newitem
+    render "newitem"
+  end
 end

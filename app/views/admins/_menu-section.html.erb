@@ -13,8 +13,8 @@
       <div class="card-text"> Rs: <%=menu.price%></div>
        <%= form_with(url: "/menus/#{menu.id}", method:"put") do %>
       <div style="display:flex;">
-      <input class="btn btn-primary" type="submit" value="+">
-      <input class="btn btn-primary" style="margin-left:2px;" type="submit" value="-">
+      <input class="btn btn-primary" type="submit" value="+" name="inc">
+      <input class="btn btn-primary" style="margin-left:2px;" type="submit" value="-" name="dec">
       <%end%>
       </div>
     </div>
