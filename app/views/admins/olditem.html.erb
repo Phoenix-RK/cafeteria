@@ -1,0 +1,23 @@
+<p>Old item page</p>
+
+<main class="MenuPageMain">
+<div class="row">
+
+    <h1 class="MenuPage-title">Menu</h1>
+        <%= render partial: "menu-section", locals:{
+          section_title: "Juice",
+          menus: Menu.juice
+        } %>
+
+        <%= render partial: "menu-section", locals:{
+          section_title: "Starters",
+          menus: Menu.starters
+        } %>
+
+        <%= render partial:"menu-section", locals:{
+          section_title: "Desserts",
+          menus: Menu.dessert
+        } %>
+
+  </div>
+</main>

@@ -1,0 +1,37 @@
+<h1>Admin maintain page</h1>
+
+<%= link_to "Old items", old_items_path %>
+<h3>Old items</h3>
+<h3>New items</h3>
+<%= form_with url: admins_path do |form| %>
+
+   <div class="Form-section">
+    <p class="FormInput-label">Product name:</p>
+    <%= form.text_field :name, class: "Form-input" %>
+   </div>
+
+
+   <div class="Form-section">
+    <p class="FormInput-label">Email:</p>
+    <%= form.email_field :email, class: "Form-input"%>
+   </div>
+
+
+   <div class="Form-section">
+   <p class="FormInput-label">Address:</p>
+    <%= form.text_field :address, class: "Form-input" %>
+   </div>
+
+   <div class="Form-section">
+   <p class="FormInput-label">Phone:</p>
+    <%= form.telephone_field :phone, class: "Form-input" %>
+   </div>
+
+  <div class="Form-section">
+  <p class="FormInput-label">Password:</p>
+    <%= form.password_field :password, class:"Form-input" %>
+  </div>
+
+  <div class="Form-section">
+  <%= form.submit "Sign up!", class:"Form-submit"%>
+  <%end%>

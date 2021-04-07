@@ -22,6 +22,5 @@ class MenusController < ApplicationController
     end
     menu.save!
     redirect_to menus_path
-
   end
 end

@@ -1,6 +1,11 @@
 class HomeController < ApplicationController
-  def index
+  skip_before_action :ensure_user_logged_in
 
-    render "index", locals: {user_name: current_user.name}
+  def index
+    if current_user
+      redirect_to menus_path
+    else
+      render "index"
+    end
   end
 end

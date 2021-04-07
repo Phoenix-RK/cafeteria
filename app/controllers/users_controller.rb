@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :ensure_user_logged_in
   def index
     render "index"
   end
@@ -15,6 +16,6 @@ class UsersController < ApplicationController
       password: params[:password],
     )
 
-    redirect_to "/"
+    render "users/confirm"
   end
 end

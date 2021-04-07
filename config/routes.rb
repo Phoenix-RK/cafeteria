@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :menus
   resources :carts
   resources :orders
+  resources :admins
   get "/signin" => "sessions#new", as: :new_sessions
   post "/signin" => "sessions#create", as: :sessions
+  get "/olditem" => "admins#olditem", as: :old_items
 
 end

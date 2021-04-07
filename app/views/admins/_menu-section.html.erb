@@ -1,0 +1,24 @@
+<section class="MenuSection">
+  <div class="MenuSectionTitle">
+   <p class="MenuSectionTitle-text"> <%=section_title%></p>
+  </div>
+
+  <div class="card-group">
+  <% menus.each do |menu| %>
+  <div class="card m-2 border border-1" style="width: 18rem;">
+    <div class="p-1">
+      <h5 class="card-title fw-bold"><%= menu.name.capitalize %></h5>
+      <div class="card-text"> <%= menu.description.capitalize %></div>
+      <div  class="card-text">Qty: <%= menu.quantities%></div>
+      <div class="card-text"> Rs: <%=menu.price%></div>
+       <%= form_with(url: "/menus/#{menu.id}", method:"put") do %>
+      <div style="display:flex;">
+      <input class="btn btn-primary" type="submit" value="+">
+      <input class="btn btn-primary" style="margin-left:2px;" type="submit" value="-">
+      <%end%>
+      </div>
+    </div>
+  </div>
+  <%end%>
+  </div>
+</section>
