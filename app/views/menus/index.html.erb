@@ -18,9 +18,10 @@
         } %>
   </div>
   <div class="col-2 bg-secondary">
+    <p><%= @current_user.id %></p>
     <h3 style="color: white">Items in the cart : <%= Cart.sum(:quantity) %> </h3>
    <div class="row">
-    <%Cart.all.each do |cart_item|%>
+    <%Cart.all.current.each do |cart_item|%>
    <div class="col-12">
     <div class="card mb-1 border border-1">
     <div class="p-1">
