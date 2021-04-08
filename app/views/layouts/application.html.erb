@@ -11,9 +11,9 @@
 
   <body>
     <% if @current_user%>
-    <p>
-      Welcome<%= @current_user.name %>
-    </p>
+    <h2>
+      User logged in <%= @current_user.name %>
+    </h2>
     <%end%>
     <%= yield %>
   </body>

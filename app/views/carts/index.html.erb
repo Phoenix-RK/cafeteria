@@ -1,26 +1,36 @@
 <div>
-    <h3>Items in the cart : <%= Cart.sum(:quantity) %> </h3>
+    <h3>Items in the cart : <%= Cart.all.where("user_id = ? ", @current_user.id).sum(:quantity) %> </h3>
     <table class="table table-striped table-hover">
       <tr>
         <th >Name</th>
         <th> Price </th>
         <th> Quantity</th>
         <th> Amount </th>
+        <th> Update </th>
       <tr>
 
-      <%Cart.all.each do |cart_item|%>
-
+      <%Cart.all.where("user_id = ? ", @current_user.id).each do |cart_item|%>
+      <% if cart_item and cart_item.quantity >0 %>
         <tr>
           <td><%= cart_item.menu_name.capitalize%></td>
           <td><%= cart_item.menu_price%></td>
           <td><%= cart_item.quantity%></td>
           <td><%=cart_item.menu_price * cart_item.quantity%></td>
-          <% @sum = @sum + (cart_item.menu_price * cart_item.quantity)%>
+          <td><%= form_with(url: "/carts/#{cart_item.menu_id}", method:"put") do %>
+              <div style="display:flex;">
+              <input class="btn btn-primary" type="submit" value="+" name="inc">
+              <input class="btn btn-primary" style="margin-left:2px;" type="submit" value="-" name="dec">
+          <%end%>
+          </td>
         </tr>
       <%end%>
+      <%end%>
     </table>
+  <p><%= Cart.calSum(@current_user.id)%></p>
+  <%= form_with(url: "/menus/", method:"get") do %>
+     <input type="submit" value="Back to menus">
+  <%end%>
 
-    <p> Total : <%= "#{@sum}" %></p>
   <%= form_with(url: "/orders/", method:"get") do %>
      <input type="submit" value="Place order">
   <%end%>

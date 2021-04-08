@@ -38,6 +38,9 @@ class MenusController < ApplicationController
         menu.quantities = menu.quantities-1
       end
       menu.save!
+      if menu.quantities == 0
+        menu.delete
+      end
       redirect_to old_items_path
     else
       id = params[:id]
@@ -56,6 +59,10 @@ class MenusController < ApplicationController
         menu.quantities = menu.quantities-1
       end
       menu.save!
+      if menu.quantities == 0
+        menu.delete
+      end
+
       redirect_to menus_path
     end
   end

@@ -18,26 +18,27 @@
         } %>
   </div>
   <div class="col-2 bg-secondary">
-    <p><%= @current_user.id %></p>
-    <h3 style="color: white">Items in the cart : <%= Cart.sum(:quantity) %> </h3>
-   <div class="row">
-    <%Cart.all.current.each do |cart_item|%>
-   <div class="col-12">
-    <div class="card mb-1 border border-1">
-    <div class="p-1">
-      <h5 class="card-title fw-bold"><%=cart_item.menu_name.capitalize%></h5>
-      <div  class="card-text">Qty: <%= cart_item.quantity%></div>
-      <div class="card-text"> Rs: <%=cart_item.menu_price%></div>
-
+      <p class="fs-5 fst-bold text-white " ><%= @current_user.name.capitalize %>'s Cart</p>
+      <p style="color: white">Items in the cart : <%= Cart.all.where("user_id = ? ", @current_user.id).sum(:quantity) %> </p>
+    <div class="row">
+      <% Cart.all.where("user_id = ?", @current_user.id).each do |cart_item|%>
+        <% if cart_item and cart_item.quantity >0 %>
+          <div class="col-12">
+            <div class="card mb-1 border border-1">
+              <div class="p-1">
+                <h5 class="card-title fw-bold"><%=cart_item.menu_name.capitalize%></h5>
+                <div  class="card-text">Qty: <%= cart_item.quantity%></div>
+                <div class="card-text"> Rs: <%=cart_item.menu_price%></div>
+              </div>
+            </div>
+          </div>
+        <%end%>
+      <%end%>
     </div>
-  </div>
-  </div>
-  <%end%>
-  </div>
 
-  <%= form_with(url: "/carts/", method:"get") do %>
-     <input type="submit" value="Checkout" class="btn btn-success">
-  <%end%>
+    <%= form_with(url: "/carts/", method:"get") do %>
+      <input type="submit" value="Checkout" class="btn btn-success">
+    <%end%>
   </div>
 
   </div>
