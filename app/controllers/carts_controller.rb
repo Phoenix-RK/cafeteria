@@ -11,7 +11,7 @@ class CartsController < ApplicationController
   def update
     if params[:inc]
       id = params[:id]
-      cart = Cart.find_by(menu_id: id)
+      cart = Cart.find_by(menu_id: id, user_id: @current_user.id)
       menu = Menu.find(id)
       if menu.quantities > 0
         cart.quantity = cart.quantity + 1
@@ -22,7 +22,7 @@ class CartsController < ApplicationController
       redirect_to cart_path
     elsif params[:dec]
       id = params[:id]
-      cart = Cart.find_by(menu_id: id)
+      cart = Cart.find_by(menu_id: id, user_id: @current_user.id)
       menu = Menu.find(id)
       if cart.quantity > 0
         cart.quantity = cart.quantity - 1

@@ -45,7 +45,7 @@ class MenusController < ApplicationController
     else
       id = params[:id]
       menu = Menu.find(id)
-      cart_item = Cart.find_by(menu_id: menu.id)
+      cart_item = Cart.find_by(menu_id: menu.id, user_id: @current_user.id)
       if cart_item == nil
         new_cart_item = Cart.create!(cart_id: 1, menu_id: menu.id, menu_name: menu.name, menu_price: menu.price, quantity: 1, user_id: @current_user.id )
       else
